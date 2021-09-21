@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1024641221979",
+    "project_id": "friends-courier-service",
+    "storage_bucket": "friends-courier-service.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024641221979:android:63c20fef57781682bd067e",
+        "android_client_info": {
+          "package_name": "com.example.fcs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1024641221979-t5jufftrughunfbb7n8easfqr1thuu4q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZuxAqPa1Z2mTr89bAQUjn_XYbVnHqvCg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1024641221979-t5jufftrughunfbb7n8easfqr1thuu4q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
