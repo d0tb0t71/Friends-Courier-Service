@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:id="@+id/drawer"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".HomeActivity">
+
+    <ImageView
+        android:id="@+id/track_now"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:src="@drawable/track_now"
+        android:layout_margin="10dp"
+        />
+    <ImageView
+        android:id="@+id/ask_query"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:src="@drawable/ask_query"
+        android:layout_margin="10dp"
+        android:layout_below="@id/track_now"
+        />
+    <ImageView
+        android:id="@+id/my_profile"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:src="@drawable/my_profile"
+        android:layout_margin="10dp"
+        android:layout_below="@id/ask_query"
+        />
+
+
+
+
+
+</RelativeLayout>

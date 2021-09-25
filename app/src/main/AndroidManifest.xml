@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FriendsCourierService">
         <activity
+            android:name=".MyProfile"
+            android:exported="true" />
+        <activity
+            android:name=".AskQuery"
+            android:exported="true" />
+        <activity
+            android:name=".TrackNow"
+            android:exported="true" />
+        <activity
             android:name=".HomeActivity"
             android:exported="true" />
         <activity

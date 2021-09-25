@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportActionBar().hide();
-
         login_btn=findViewById(R.id.login_btn);
         register_btn=findViewById(R.id.register_btn);
 
