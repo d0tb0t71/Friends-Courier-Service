@@ -76,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
                             hashMap.put("email",email);
                             hashMap.put("uid",uid);
                             hashMap.put("name",name);
-                            hashMap.put("phone",mobile);
+                            hashMap.put("mobile",mobile);
                             hashMap.put("address",address);
 
                             FirebaseDatabase database=FirebaseDatabase.getInstance();
@@ -95,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     }
                 });
-                Toast.makeText(getApplicationContext(), "Register Clicked", Toast.LENGTH_SHORT).show();
+
             }
         });
 

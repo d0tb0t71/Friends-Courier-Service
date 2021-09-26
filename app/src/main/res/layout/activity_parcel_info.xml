@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ParcelInfo">
+
+    <TextView
+        android:id="@+id/details_productType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ProductType"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:textSize="20dp"
+        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:src="@drawable/divider"
+        android:scaleType="fitXY"
+        />
+
+    <TextView
+        android:id="@+id/details_to"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="To : Username"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="18dp"
+        />
+    <TextView
+        android:id="@+id/details_mobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mobile"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="18dp"
+        />
+    <TextView
+        android:id="@+id/details_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Address"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="18dp"
+        />
+    <TextView
+        android:id="@+id/details_from"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="From : Person Name"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="18dp"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:src="@drawable/divider"
+        android:scaleType="fitXY"
+        />
+
+    <TextView
+        android:id="@+id/details_shippedBy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Shipped By : Admin Name"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="18dp"
+        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:src="@drawable/divider"
+        android:scaleType="fitXY"
+        />
+    <TextView
+        android:id="@+id/details_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Parcel Status"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        />
+
+    <ImageView
+        android:id="@+id/arrived_at_warehouse"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:src="@drawable/arrived_warehouse"
+        android:scaleType="fitXY"
+        android:layout_gravity="center"
+        />
+    <ImageView
+        android:id="@+id/shipped"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:src="@drawable/shipped"
+        android:scaleType="fitXY"
+        android:layout_gravity="center"
+        />
+    <ImageView
+        android:id="@+id/arrived_receiver_warehouse"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:src="@drawable/receiver_warehouse"
+        android:scaleType="fitXY"
+        android:layout_gravity="center"
+        />
+    <ImageView
+        android:id="@+id/delivered_successfully"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:src="@drawable/delivered_successfully"
+        android:scaleType="fitXY"
+        android:layout_gravity="center"
+        />
+
+
+
+
+</LinearLayout>

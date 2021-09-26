@@ -3,6 +3,7 @@ package com.example.fcs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,20 +24,24 @@ public class HomeActivity extends AppCompatActivity {
         track_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),TrackNow.class));
+            }
+        });
+
+        ask_query.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(getApplicationContext(),AskQuery.class));
 
             }
         });
 
-        track_now.setOnClickListener(new View.OnClickListener() {
+        my_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-            }
-        });
-
-        track_now.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),MyProfile.class));
 
             }
         });
