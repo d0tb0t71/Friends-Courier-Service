@@ -15,16 +15,26 @@
         android:textSize="17dp"
         android:textStyle="bold"/>
 
-    <TextView
-        android:id="@+id/query_txt"
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="U S E R   Q U E R Y"
         android:layout_below="@id/query_details"
-        android:textColor="@color/white"
-        android:padding="10dp"
-        android:layout_marginTop="10dp"
-        />
+        android:elevation="5dp"
+        android:background="@color/white"
+        >
+        <TextView
+            android:id="@+id/query_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:padding="10dp"
+            android:text="U S E R   Q U E R Y"
+            android:textColor="@color/black" />
+
+
+    </androidx.cardview.widget.CardView>
+
 
 
 

@@ -46,6 +46,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth=FirebaseAuth.getInstance();
 
+        String userStatus= getIntent().getStringExtra("userStatus");
+
 
 
         register_now.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +80,8 @@ public class RegisterActivity extends AppCompatActivity {
                             hashMap.put("name",name);
                             hashMap.put("mobile",mobile);
                             hashMap.put("address",address);
+                            hashMap.put("userStatus",userStatus);
+
 
                             FirebaseDatabase database=FirebaseDatabase.getInstance();
                             DatabaseReference reference=database.getReference("Users");

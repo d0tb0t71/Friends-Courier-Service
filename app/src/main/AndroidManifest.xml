@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FriendsCourierService">
         <activity
+            android:name=".AdminOrCustomer"
+            android:exported="true" />
+        <activity
             android:name=".ParcelInfo"
             android:exported="true" />
         <activity
