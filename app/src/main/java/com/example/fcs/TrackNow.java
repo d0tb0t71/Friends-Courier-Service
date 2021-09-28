@@ -44,6 +44,8 @@ public class TrackNow extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track_now);
 
+        getSupportActionBar().setTitle("Track Now");
+
         floatingActionButton = findViewById(R.id.floating_action_btn);
         recyclerView = findViewById(R.id.recycler_view);
 

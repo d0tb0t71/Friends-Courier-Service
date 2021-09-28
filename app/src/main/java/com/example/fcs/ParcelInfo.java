@@ -8,7 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -16,10 +19,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 public class ParcelInfo extends AppCompatActivity {
 
     TextView details_productType,details_to,details_mobile,details_address,details_from,details_shippedBy,details_status;
     ImageView arrived_at_warehouse,shipped,arrived_receiver_warehouse,delivered_successfully;
+    HashMap<Object, String> hashMap;
+    String MyStatus="" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +50,7 @@ public class ParcelInfo extends AppCompatActivity {
 
 
 
+
         details_productType.setText(getIntent().getStringExtra("ProductType"));
         details_to.setText("To: "+getIntent().getStringExtra("Name"));
         details_mobile.setText(getIntent().getStringExtra("Mobile"));
@@ -50,7 +58,76 @@ public class ParcelInfo extends AppCompatActivity {
         details_from.setText("From: "+getIntent().getStringExtra("Sender"));
 
 
+
+
+
+
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String MyUID = user.getUid();
+
+
         DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot dataSnapshot: snapshot.getChildren())
+                {
+                    String UserID = ""+dataSnapshot.child("uid").getValue();
+                    String UserStatus = ""+dataSnapshot.child("userStatus").getValue();
+
+
+
+                    if(UserID.equals(MyUID)){
+
+
+
+                        if(UserStatus.equals("admin"))
+                        MyStatus=UserStatus;
+
+                        if(MyStatus.equals("admin"))
+                        {
+                            System.out.println("Admin--------------------------");
+
+                        }
+                        else
+                        {
+                            System.out.println("User--------------------------");
+
+                            arrived_at_warehouse.setVisibility(View.GONE);
+                            shipped.setVisibility(View.GONE);
+                            arrived_receiver_warehouse.setVisibility(View.GONE);
+                            delivered_successfully.setVisibility(View.GONE);
+
+                        }
+
+                    }
+
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+
         databaseReference1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -71,7 +148,8 @@ public class ParcelInfo extends AppCompatActivity {
         });
 
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Parcel");
+
+
 
 
 
@@ -83,6 +161,39 @@ public class ParcelInfo extends AppCompatActivity {
                 arrived_at_warehouse.setColorFilter(getResources().getColor(R.color.green));
 
 
+                Toast.makeText(getApplicationContext(), "Shipped", Toast.LENGTH_SHORT).show();
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String uid = user.getUid();
+
+
+                Query query = FirebaseDatabase.getInstance().getReference("Parcel");
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot dataSnapshot: snapshot.getChildren())
+                        {
+
+                            ModelParcel modelParcel = dataSnapshot.getValue(ModelParcel.class);
+
+                            if(modelParcel.getAddedBy().equals(uid)) {
+
+                                modelParcel.setArrivedW("yes");
+
+                                dataSnapshot.getRef().setValue(modelParcel);
+
+                            }
+
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+
+                });
+
 
 
             }
@@ -92,18 +203,119 @@ public class ParcelInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 shipped.setColorFilter(getResources().getColor(R.color.green));
+
+
+                Toast.makeText(getApplicationContext(), "Shipped", Toast.LENGTH_SHORT).show();
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String uid = user.getUid();
+
+
+                Query query = FirebaseDatabase.getInstance().getReference("Parcel");
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot dataSnapshot: snapshot.getChildren())
+                        {
+
+                            ModelParcel modelParcel = dataSnapshot.getValue(ModelParcel.class);
+
+                            if(modelParcel.getAddedBy().equals(uid)) {
+
+                                modelParcel.setShipped("yes");
+
+                                dataSnapshot.getRef().setValue(modelParcel);
+
+                            }
+
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+
+                });
             }
         });
         arrived_receiver_warehouse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 arrived_receiver_warehouse.setColorFilter(getResources().getColor(R.color.green));
+
+                Toast.makeText(getApplicationContext(), "Shipped", Toast.LENGTH_SHORT).show();
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String uid = user.getUid();
+
+
+                Query query = FirebaseDatabase.getInstance().getReference("Parcel");
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot dataSnapshot: snapshot.getChildren())
+                        {
+
+                            ModelParcel modelParcel = dataSnapshot.getValue(ModelParcel.class);
+
+                            if(modelParcel.getAddedBy().equals(uid)) {
+
+                                modelParcel.setArrivedRW("yes");
+
+                                dataSnapshot.getRef().setValue(modelParcel);
+
+                            }
+
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+
+                });
             }
         });
         delivered_successfully.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 delivered_successfully.setColorFilter(getResources().getColor(R.color.green));
+
+
+                Toast.makeText(getApplicationContext(), "Shipped", Toast.LENGTH_SHORT).show();
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String uid = user.getUid();
+
+
+                Query query = FirebaseDatabase.getInstance().getReference("Parcel");
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot dataSnapshot: snapshot.getChildren())
+                        {
+
+                            ModelParcel modelParcel = dataSnapshot.getValue(ModelParcel.class);
+
+                            if(modelParcel.getAddedBy().equals(uid)) {
+
+                                modelParcel.setDelivered("yes");
+
+                                dataSnapshot.getRef().setValue(modelParcel);
+
+                            }
+
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+
+                });
             }
         });
 
