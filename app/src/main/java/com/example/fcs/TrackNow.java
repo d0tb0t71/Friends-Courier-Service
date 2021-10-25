@@ -38,6 +38,8 @@ public class TrackNow extends AppCompatActivity {
     AdapterParcel adapterParcel;
 
     String senderMobile;
+    String MyMobile="";
+    String UserStatus="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,10 @@ public class TrackNow extends AppCompatActivity {
 
         floatingActionButton = findViewById(R.id.floating_action_btn);
         recyclerView = findViewById(R.id.recycler_view);
+
+
+
+
 
 
         recyclerView.setHasFixedSize(true);
@@ -63,21 +69,92 @@ public class TrackNow extends AppCompatActivity {
         adapterParcel = new AdapterParcel(this, list);
         recyclerView.setAdapter(adapterParcel);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Parcel");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+
+
+        DatabaseReference databaseReference0= FirebaseDatabase.getInstance().getReference("Users");
+        FirebaseUser user0= FirebaseAuth.getInstance().getCurrentUser();
+
+
+        databaseReference0.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
 
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    ModelParcel modelParcel = dataSnapshot.getValue(ModelParcel.class);
+                    ModelUser modelUser = dataSnapshot.getValue(ModelUser.class);
 
-                    list.add(modelParcel);
+                    if(user0.getUid().equals(modelUser.getUid())){
+                        UserStatus = modelUser.getUserStatus();
+                        MyMobile = modelUser.getMobile();
+
+                        if(UserStatus.equals("customer"))
+                        {
+                            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Parcel");
+                            databaseReference.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                    list.clear();
+
+                                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                        ModelParcel modelParcel = dataSnapshot.getValue(ModelParcel.class);
+
+                                        if(MyMobile.equals(modelParcel.getMobile()))
+                                        list.add(modelParcel);
+                                    }
+                                    adapterParcel.notifyDataSetChanged();
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+
+                        }
+                        else{
+
+                            floatingActionButton.setVisibility(View.VISIBLE);
+
+
+                            //fetching Data
+                            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Parcel");
+                            databaseReference.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                    list.clear();
+
+                                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                        ModelParcel modelParcel = dataSnapshot.getValue(ModelParcel.class);
+
+                                        list.add(modelParcel);
+                                    }
+
+                                    adapterParcel.notifyDataSetChanged();
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                        }
+
+
+
+
+
+
+
+
+
+                    }
+
+
                 }
-
-                adapterParcel.notifyDataSetChanged();
-
             }
 
             @Override
@@ -85,6 +162,9 @@ public class TrackNow extends AppCompatActivity {
 
             }
         });
+
+
+
 
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -136,7 +216,6 @@ public class TrackNow extends AppCompatActivity {
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                             String userID = user.getUid();
-
 
                             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
                             String currentDateandTime = sdf.format(new Date());
@@ -194,6 +273,8 @@ public class TrackNow extends AppCompatActivity {
 
             }
         });
+
+
 
 
     }

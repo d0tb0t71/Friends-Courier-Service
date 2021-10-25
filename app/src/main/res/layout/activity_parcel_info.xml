@@ -133,6 +133,15 @@
         android:layout_gravity="center"
         />
 
+    <Button
+        android:id="@+id/check_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check Status"
+        android:layout_gravity="center|bottom"
+        />
+
+
 
 
 

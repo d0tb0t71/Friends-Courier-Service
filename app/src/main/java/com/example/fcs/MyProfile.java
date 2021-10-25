@@ -27,6 +27,8 @@ public class MyProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
+        getSupportActionBar().setTitle("My Profile");
+
         user_name=findViewById(R.id.user_name);
         user_mobile=findViewById(R.id.user_mobile);
         user_address=findViewById(R.id.user_address);

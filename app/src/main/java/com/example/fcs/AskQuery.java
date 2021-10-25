@@ -50,6 +50,8 @@ public class AskQuery extends AppCompatActivity {
         recyclerView=findViewById(R.id.recyclerview);
         floatingActionButton= findViewById(R.id.floating_btn);
 
+        getSupportActionBar().setTitle("Ask Query");
+
 
 
 

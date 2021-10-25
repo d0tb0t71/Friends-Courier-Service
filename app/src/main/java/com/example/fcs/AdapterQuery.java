@@ -1,8 +1,11 @@
 package com.example.fcs;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -81,6 +84,21 @@ public class AdapterQuery extends RecyclerView.Adapter<AdapterQuery.MyViewHolder
 
 
 
+        holder.query_call.setOnClickListener(v->{
+
+
+            String text = holder.query_details.getText().toString();
+            String mobile = text.substring(text.length() - 11);
+
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:"+mobile));
+            context.startActivity(callIntent);
+
+        });
+
+
+
+
     }
 
     @Override
@@ -91,6 +109,7 @@ public class AdapterQuery extends RecyclerView.Adapter<AdapterQuery.MyViewHolder
     public class MyViewHolder  extends RecyclerView.ViewHolder{
 
         TextView query_details,query_txt;
+        ImageView query_call;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -98,6 +117,8 @@ public class AdapterQuery extends RecyclerView.Adapter<AdapterQuery.MyViewHolder
 
             query_details = itemView.findViewById(R.id.query_details);
             query_txt = itemView.findViewById(R.id.query_txt);
+
+            query_call = itemView.findViewById(R.id.query_call);
 
 
         }

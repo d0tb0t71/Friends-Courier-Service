@@ -1,6 +1,7 @@
 package com.example.fcs;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,9 +9,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class HomeActivity extends AppCompatActivity {
 
     ImageView track_now,ask_query,my_profile;
+    String MyMobile;
+    String UserStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +31,12 @@ public class HomeActivity extends AppCompatActivity {
         track_now=findViewById(R.id.track_now);
         ask_query=findViewById(R.id.ask_query);
         my_profile=findViewById(R.id.my_profile);
+
+
+
+
+
+
 
         track_now.setOnClickListener(new View.OnClickListener() {
             @Override
